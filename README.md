@@ -1,1 +1,1 @@
-# Facial-Detection
+# Facial Detection
