@@ -7,7 +7,7 @@ import cv2
 cascadePath = 'haarcascade_frontalface_default.xml'
 faceCascade = cv2.CascadeClassifier(cascadePath)
 
-video_capture = cv2.VideoCaptureq(0)
+video_capture = cv2.VideoCapture(0)
 
 while True:
     # Capture frame-by-frame
