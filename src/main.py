@@ -2,17 +2,23 @@
 # 9/6/15
 # FacialDetection
 
+import os
+
 import cv2
 
-cascadePath_Face = './classifiers/haarcascade_frontalface_default.xml'
-cascadePath_Smile = './classifiers/haarcascade_smile.xml'
+cascadePath_Face = os.path.join(str(__file__).split("src")[0], "classifiers/haarcascade_frontalface_default.xml")
+cascadePath_Smile = os.path.join(str(__file__).split("src")[0], "classifiers/haarcascade_smile.xml")
+
+assert os.path.isfile(cascadePath_Face)
+assert os.path.isfile(cascadePath_Smile)
 
 faceCascade = cv2.CascadeClassifier(cascadePath_Face)
 smileCascade = cv2.CascadeClassifier(cascadePath_Smile)
 
-
 video_capture = cv2.VideoCapture(0)
-
+video_capture.set(3, 420)
+video_capture.set(4, 340)
+video_capture.set(5, 60)
 
 while True:
     # Capture frame-by-frame
@@ -22,7 +28,7 @@ while True:
 
     faces = faceCascade.detectMultiScale(
         gray,
-        scaleFactor=1.1,
+        scaleFactor=1.4,
         minNeighbors=5,
         minSize=(15, 15)
     )
@@ -34,9 +40,9 @@ while True:
         roi_color = frame[y:y + h, x:x + w]
         smiles = smileCascade.detectMultiScale(
             roi_gray,
-            scaleFactor=1.1,
-            minNeighbors=600,
-            minSize=(10, 10)
+            scaleFactor=1.05,
+            minNeighbors=5,
+            minSize=(15, 15)
         )
 
         for (ex, ey, ew, eh) in smiles[:1]:
