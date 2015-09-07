@@ -60,6 +60,9 @@ docs/_build/
 # PyBuilder
 target/
 
+#autoEnv
+.env
+
 
 ### OSX ###
 .DS_Store
