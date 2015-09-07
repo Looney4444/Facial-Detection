@@ -9,7 +9,7 @@ from detectFace import DetectFace
 def main():
     vid = VideoCapture()
 
-    face = DetectFace(vid, smile=False, eye=False)
+    face = DetectFace(vid, smile=True, eye=False)
     face.activate()
 
     vid.release()

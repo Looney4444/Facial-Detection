@@ -18,6 +18,7 @@ class DetectFace:
             pass  # self.eyeCascade = CascadeFile("haarcascade_eye.xml").getClassifier()
         if self.smile:
             self.smileCascade = CascadeFile("haarcascade_smile.xml").getClassifier()
+
         self.activate()
 
     def activate(self):
@@ -54,9 +55,14 @@ class DetectFace:
             # Display the resulting frame
             cv2.imshow('Facial Detection', frame)
 
-            # When 'q' on the keyboard is hit the loop is exited
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            k = cv2.waitKey(1)
+            if k == 27 or k == 113:  # Esc key to stop
                 self.active = False
-                break
-
-        cv2.destroyAllWindows()
+                cv2.destroyAllWindows()
+            if k == 115:  # Toggle smile
+                self.smile = not self.smile
+                continue
+            elif k == -1:  # normally -1 returned,so don't print it
+                continue
+            else:
+                continue
