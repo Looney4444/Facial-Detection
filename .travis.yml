@@ -3,7 +3,7 @@ language: python
 python:
   - "3.4"
   
-sudo: false
+sudo: true
 
 before_install:
  - sudo apt-get update
